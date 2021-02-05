@@ -2,6 +2,13 @@ img {
   width: 100%;
 }
 
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between
+}
+
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat;

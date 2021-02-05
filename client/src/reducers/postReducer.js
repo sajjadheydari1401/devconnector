@@ -12,7 +12,7 @@ const initialState = {
   loading: false
 };
 
-export default function(state = initialState, action) {
+const PostReducer = (state = initialState, action) => {
   switch (action.type) {
     case POST_LOADING:
       return {
@@ -45,3 +45,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default PostReducer;

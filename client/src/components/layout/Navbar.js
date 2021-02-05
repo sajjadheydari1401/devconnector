@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
@@ -10,6 +10,7 @@ class Navbar extends Component {
     e.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logoutUser();
+    this.props.history.push('/login')
   }
 
   render() {
@@ -28,8 +29,8 @@ class Navbar extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a
-            href=""
+          <Link
+            to="#"
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link"
           >
@@ -41,7 +42,7 @@ class Navbar extends Component {
               title="You must have a Gravatar connected to your email to display an image"
             />{' '}
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     );
@@ -102,6 +103,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
-  Navbar
-);
+export default  withRouter(connect(mapStateToProps, { logoutUser, clearCurrentProfile })(Navbar));

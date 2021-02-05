@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classnames from 'classnames';
-import { Link } from 'react-router-dom';
-import { deletePost, addLike, removeLike } from '../../actions/postActions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import { Link } from "react-router-dom";
+import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
 class PostItem extends Component {
   onDeleteClick(id) {
@@ -29,17 +29,20 @@ class PostItem extends Component {
 
   render() {
     const { post, auth, showActions } = this.props;
+    const { profile } = this.props.profile;
 
     return (
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
             <a href="profile.html">
-              <img
-                className="rounded-circle d-none d-md-block"
-                src={post.avatar}
-                alt=""
-              />
+              <Link to={`/profile/${profile.handle}`}>
+                <img
+                  className="rounded-circle d-none d-md-block"
+                  src={post.avatar}
+                  alt=""
+                />
+              </Link>
             </a>
             <br />
             <p className="text-center">{post.name}</p>
@@ -54,8 +57,8 @@ class PostItem extends Component {
                   className="btn btn-light mr-1"
                 >
                   <i
-                    className={classnames('fas fa-thumbs-up', {
-                      'text-info': this.findUserLike(post.likes)
+                    className={classnames("fas fa-thumbs-up", {
+                      "text-info": this.findUserLike(post.likes)
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
@@ -101,6 +104,7 @@ PostItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   auth: state.auth
 });
 
