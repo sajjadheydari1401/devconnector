@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
+import { logoutUser } from '../../actions/authActions';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
@@ -15,7 +16,8 @@ class Dashboard extends Component {
 
   onDeleteClick(e) {
     this.props.deleteAccount();
-    <Redirect to='/login'/>
+    this.props.logoutUser();
+    this.props.history.push('/login')
   }
 
   render() {
@@ -76,6 +78,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -87,6 +90,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, logoutUser })(
   Dashboard
 );
