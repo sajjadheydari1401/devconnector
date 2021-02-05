@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
@@ -15,6 +15,7 @@ class Dashboard extends Component {
 
   onDeleteClick(e) {
     this.props.deleteAccount();
+    <Redirect to='/login'/>
   }
 
   render() {

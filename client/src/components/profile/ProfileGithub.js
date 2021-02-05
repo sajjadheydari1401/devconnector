@@ -6,8 +6,8 @@ class ProfileGithub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientId: '26c196bacea7db10cf48',
-      clientSecret: '0885cb690e07d2a93a6afb0891fb552fd9f7aa53',
+      clientId: '970b30bf7b81bba10627',
+      clientSecret: '2f39a91ca10e3d0e902d764c54e055cca66ebc32',
       count: 5,
       sort: 'created: asc',
       repos: []
@@ -23,7 +23,7 @@ class ProfileGithub extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        if (this.refs.myRef) {
+        if (this.myRef) {
           this.setState({ repos: data });
         }
       })
